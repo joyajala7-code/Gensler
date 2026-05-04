@@ -1,5 +1,9 @@
 'use client'
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+;
+
+
 
 
 import { useState } from 'react'
@@ -39,16 +43,23 @@ const callsToAction = [
 
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/logout");
+  };
+
 
   return (
     <header className="bg-white-900">
       <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
-       <div className="flex lg:flex-1">
-  <a href="#" className="-m-1.5 p-1.5">
-    <span className="sr-only">Your Company</span>
-    <span className="text-red-500 font-bold text-3xl">Gensler</span>
-  </a>
-</div>
+        <div className="flex lg:flex-1">
+          <a href="#" className="-m-1.5 p-1.5">
+            <span className="sr-only">Your Company</span>
+            <span className="text-cyan-500 font-bold text-3xl">Gensler</span>
+          </a>
+        </div>
         <div className="flex lg:hidden">
           <button
             type="button"
@@ -119,20 +130,21 @@ export default function Example() {
           <a href="#" className="text-sm/6 font-semibold text-black">
             About
           </a>
-          <a href="#" className="text-sm/6 font-semibold text-red-500">
+          <a href="#" className="text-sm/6 font-semibold text-cyan-500">
             Careers
           </a>
           <a href="#" className="text-sm/6 font-semibold text-black">
             Contact Us
           </a>
         </PopoverGroup>
-       
 
-<div className="hidden lg:flex lg:flex-1 lg:justify-end">
-  <Link to="/login" className="text-sm/6 font-semibold text-black">
-    Log in <span aria-hidden="true">&rarr;</span>
-  </Link>
-</div>
+
+        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+          <button onClick={handleLogout} className="text-sm/6 font-semibold text-black">
+            Log out <span aria-hidden="true">&rarr;</span>
+          </button>
+        </div>
+
       </nav>
       <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
         <div className="fixed inset-0 z-50" />
@@ -142,8 +154,8 @@ export default function Example() {
               <span className="sr-only">Your Company</span>
               <a href="#" className="-m-1.5 p-1.5">
                 <span className="sr-only">Your Company</span>
-                <span className="text-red-500 font-bold text-3xl">Gensler</span>
-            </a>
+                <span className="text-cyan-500 font-bold text-3xl">Gensler</span>
+              </a>
             </a>
             <button
               type="button"
@@ -207,7 +219,7 @@ export default function Example() {
                 </a>
                 <a
                   href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-red-500 hover:bg-black/5"
+                  className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-cyan-500 hover:bg-black/5"
                 >
                   Careers
                 </a>
@@ -219,12 +231,10 @@ export default function Example() {
                 </a>
               </div>
               <div className="py-6">
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-white hover:bg-white/5"
-                >
-                  Log in
-                </a>
+                <button onClick={handleLogout} className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-white hover:bg-white/5">
+                  Log out
+                </button>
+
               </div>
             </div>
           </div>
