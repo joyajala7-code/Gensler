@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 import cors from 'cors';
 import connectDB from './config/db.js';
-import authRoutes from './Routes/Auth.js';
+import authRoutes from './routes/Auth.js';
 
 console.log(process.env.MONGO_URI);
 const app = express();
