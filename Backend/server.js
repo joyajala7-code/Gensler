@@ -9,7 +9,10 @@ console.log(process.env.MONGO_URI);
 const app = express();
 const PORT = process.env.PORT || 5001;
 
-app.use(cors());
+app.use(cors({
+  origin: 'https://gensler-git-main-damilolas-projects-8f12e9d2.vercel.app',
+  credentials: true
+}));
 app.use(express.json());
 app.use("/api/auth", authRoutes);
 
