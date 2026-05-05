@@ -12,7 +12,8 @@ const PORT = process.env.PORT || 5001;
 app.use(cors({
   origin: [
     'https://gensler-git-main-damilolas-projects-8f12e9d2.vercel.app',
-    'https://gensler-gfeod02m4-damilolas-projects-8f12e9d2.vercel.app'
+    'https://gensler-gfeod02m4-damilolas-projects-8f12e9d2.vercel.app',
+    'https://gensler-beta.vercel.app'
   ],
   credentials: true
 }));
@@ -28,3 +29,6 @@ connectDB().then(() => {
   console.error('Failed to connect to MongoDB:', err);
   process.exit(1);
 });
+
+
+
