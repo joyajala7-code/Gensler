@@ -19,7 +19,7 @@ function Home() {
       <Header />
 
       {/* Video Section */}
-      <div className='relative w-full h-screen'>
+     <div className='relative w-full h-62.5 sm:h-87.5 md:h-125 lg:h-150'>
         <video
           className='absolute inset-0 w-full h-full object-cover'
           src={video}
