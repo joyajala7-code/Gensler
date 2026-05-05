@@ -19,7 +19,7 @@ function Home() {
       <Header />
 
       {/* Video Section */}
-     <div className='relative w-full h-62.5 sm:h-87.5 md:h-125 lg:h-150'>
+    <div className='relative w-full' style={{ height: 'clamp(250px, 50vw, 600px)' }}>
         <video
           className='absolute inset-0 w-full h-full object-cover'
           src={video}
