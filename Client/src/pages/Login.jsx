@@ -52,7 +52,7 @@ export default function Login() {
         return setError(data.message || "Something went wrong");
       }
 
-      localStorage.setItem("token", data.token);
+      
 
       if (isLogin) {
         navigate("/home");
