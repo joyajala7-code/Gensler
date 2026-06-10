@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import bgImage from "../assets/loginpic.jpeg";
+import Loader from "../component/Loader";
 
 export default function Login() {
   const [isLogin, setIsLogin] = useState(true);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
@@ -20,8 +22,11 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    setLoading(true);
+    console.log("loading set to true");
 
     if (!isLogin && formData.password !== formData.confirmPassword) {
+      setLoading(false);
       return setError("Passwords do not match");
     }
 
@@ -36,7 +41,6 @@ export default function Login() {
 
     try {
       const res = await fetch(`https://gensler-lgb1.onrender.com${endpoint}`, {
-     
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
@@ -58,6 +62,8 @@ export default function Login() {
       }
     } catch (err) {
       setError("Could not connect to server");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -168,12 +174,18 @@ export default function Login() {
             </div>
           )}
 
-          <button
-            type="submit"
-            className="w-full p-3 bg-linear-to-r from-blue-700 via-cyan-600 to-cyan-200 text-white rounded-full text-sm sm:text-lg font-medium hover:opacity-90 active:scale-95 transition-all"
-          >
-            {isLogin ? "Login" : "Sign Up"}
-          </button>
+          <div>
+  {loading ? (
+    <Loader />
+  ) : (
+    <button
+      type="submit"
+      className="w-full p-3 bg-linear-to-r from-blue-700 via-cyan-600 to-cyan-200 text-white rounded-full text-sm sm:text-lg font-medium hover:opacity-90 active:scale-95 transition-all"
+    >
+      {isLogin ? "Login" : "Sign Up"}
+    </button>
+  )}
+</div>
 
           <p className="text-center text-gray-600 text-sm sm:text-base">
             {isLogin ? "Don't have an account? " : "Already have an account? "}
